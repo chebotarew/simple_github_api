@@ -21,7 +21,9 @@ export default class ShowRepositoriesComponent extends React.Component<
         if (!repositories.length) return null
         if (searchString.length) {
             repositories = repositories.filter(
-                rep => rep.name.indexOf(searchString) + 1
+                rep =>
+                    rep.name.toLowerCase().indexOf(searchString.toLowerCase()) +
+                    1
             )
         }
         return (
