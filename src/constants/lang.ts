@@ -2,7 +2,8 @@ export enum UIlangs {
     loading = 'Please wait, data loading',
     Language = 'Language:',
     Created = 'Created:',
-    RepositoryName = 'Repository name:'
+    RepositoryName = 'Repository name:',
+    SearchByName = 'Search by project name...'
 }
 
 export const ProgramLangs: string[] = [
@@ -10,8 +11,7 @@ export const ProgramLangs: string[] = [
     'Python',
     'PHP',
     'Java',
-    'TypeScript',
-    'C'
-];
+    'TypeScript'
+]
 
 export const getHeader = (lang: string): string => `Latest ${lang} repositories`
