@@ -13,11 +13,10 @@ import LangButtonGroupComponent from './LangButtonGroup.component'
 import LicenceChoiceComponent from './LicenseChoice.component'
 import ShowRepositoriesComponent from './ShowRepositories.component'
 import { RepositoryModel } from '../models/Repository.model'
-import { searchRepositories } from '../api/github/repos.api'
+import { searchRepositories, getAllLicenses } from '../api/github/repos.api'
 import { UIlangs, ProgramLangs, getHeader } from '../constants/lang'
 import { rowsCount } from '../constants/ui'
 import { LoadStatuses } from '../constants/loadStatus'
-import { Licenses } from '../constants/licenses'
 import './App.css'
 
 interface ComponentProps {}
@@ -26,6 +25,7 @@ interface ComponentState {
     repositories: RepositoryModel[]
     lang: string
     license: string
+    licenses: string[]
     searchString: string
     loading: boolean
     loaded: boolean
@@ -42,6 +42,7 @@ export default class App extends React.PureComponent<
             repositories: [],
             lang: 'JavaScript',
             license: '',
+            licenses: [],
             searchString: '',
             loading: false,
             loaded: false,
@@ -52,6 +53,9 @@ export default class App extends React.PureComponent<
     async componentDidMount() {
         const { lang, license } = this.state
         this.loadRepositories(lang, license)
+        let licenses = await getAllLicenses()
+        licenses = licenses.map((l: any) => l.key)
+        this.setState({ licenses })
     }
 
     async componentDidUpdate(
@@ -115,7 +119,8 @@ export default class App extends React.PureComponent<
             loading,
             error,
             searchString,
-            license
+            license,
+            licenses
         } = this.state
         return (
             <div className='App'>
@@ -129,7 +134,7 @@ export default class App extends React.PureComponent<
                     <Segment.Group size='tiny'>
                         <Segment>
                             <LicenceChoiceComponent
-                                licenses={Licenses}
+                                licenses={licenses}
                                 activeLicense={license}
                                 onChangeLicense={this.changeLicense}
                             />

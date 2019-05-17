@@ -1,4 +1,4 @@
 export enum Urls {
-    repositories = '/repositories',
-    searchRepositories = '/search/repositories'
+    searchRepositories = '/search/repositories',
+    licenses = '/licenses'
 }

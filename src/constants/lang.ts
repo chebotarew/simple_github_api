@@ -3,7 +3,8 @@ export enum UIlangs {
     Language = 'Language:',
     Created = 'Created:',
     RepositoryName = 'Repository name:',
-    SearchByName = 'Search by project name...'
+    SearchByName = 'Search by project name...',
+    UserLogin = 'User login: '
 }
 
 export const ProgramLangs: string[] = [

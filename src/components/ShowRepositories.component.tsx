@@ -43,10 +43,10 @@ export default class ShowRepositoriesComponent extends React.Component<
                             <Card.Content>
                                 <Card.Header
                                     as='a'
-                                    href={rep.owner.html_url}
+                                    href={rep.html_url}
                                     target='_blank'
                                 >
-                                    {rep.owner.login}
+                                    {rep.name}
                                 </Card.Header>
                                 <Card.Meta>
                                     {UIlangs.Language} {rep.language}
@@ -57,10 +57,10 @@ export default class ShowRepositoriesComponent extends React.Component<
                                 </Card.Meta>
                                 <Card.Description
                                     as='a'
-                                    href={rep.html_url}
+                                    href={rep.owner.html_url}
                                     target='_blank'
                                 >
-                                    {UIlangs.RepositoryName} {rep.name}
+                                    {UIlangs.UserLogin} {rep.owner.login}
                                 </Card.Description>
                             </Card.Content>
                         </Card>
